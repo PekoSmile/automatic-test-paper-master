@@ -61,6 +61,7 @@ axios.defaults.timeout = 30000000
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
 	document.title = `应急消防知识学习系统`;
+
 	const token = sessionStorage.getItem('token');
 	if (!token && to.path !== '/login') {
 		next('/login');

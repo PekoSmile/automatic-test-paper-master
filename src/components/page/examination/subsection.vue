@@ -31,7 +31,7 @@
         </el-col>
       </el-row>
     </div>
-    <div id="main" style="width: 100%;height: 600px;">
+    <div id="main" style="width: 80%;height: 600px;">
 
     </div>
 
@@ -85,7 +85,7 @@ export default {
       this.charts = echarts.init(document.getElementById(id))
       this.charts.setOption({
         title: {
-          text: '成绩分段'
+          text: '                     '+'试卷成绩分段'
         },
 
         tooltip: {},
@@ -119,21 +119,21 @@ export default {
           name: '总共人数',
           type: 'bar',
           stack: '总量',
-          barCategoryGap: '60%',
+          barCategoryGap: '70%',
           data: this.opinionData,
           itemStyle: {
-            color: '#62A1A9'  //设置柱子颜色
+            color: '#0772c4'  //设置柱子颜色
           },
           emphasis: {
             itemStyle: {
-              color: '#2F4654',   //hover时改变柱子颜色
-              // shadowColor: 'rgba(102,102,102,0.50)',
+              color: '#004e8a',   //hover时改变柱子颜色
+               shadowColor: 'rgba(102,102,102,0.50)',
               // shadowOffsetX: 0,
               // shadowOffsetY: 2,
-              // shadowBlur: 6,
-              borderWidth: 4,
-              borderColor: '#2F4654',
-              // borderType: 'solid'
+              //shadowBlur: 6,
+              borderWidth: 1,
+              borderColor: '#008A17FF',
+              borderType: 'solid'
             }
           },
         },

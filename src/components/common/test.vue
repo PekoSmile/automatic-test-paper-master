@@ -1,10 +1,12 @@
 <template>
   <div>
+    <div style="margin:0% 20% 0% 20%">
+      <p style="text-align:center; color: #ff0000">注意: 离开页面即交卷,请谨慎操作！</p>
+    </div>
     <div class="title-paperName">
       <h1 style="text-align:center;">
         {{title.paperName}}
       </h1>
-
     </div>
     <div class="title-userName" style="margin-left: 20%">
       <el-row :gutter="20">
@@ -75,14 +77,22 @@ export default {
     };
   },
   mounted() {
+    window.addEventListener('beforeunload', e => this.beforeunloadHandler(e))
     if (this.times > 0) {
       this.hour = Math.floor(( this.times /60) % 24)
       this.minute = Math.floor((this.times) % 60)
       this.second = Math.floor((this.times / 60) % 60)
-      this.countDowm()
+      this.countDown()
     }
   },
+  destroyed () {
+    window.removeEventListener('beforeunload', e => this.beforeunloadHandler(e))
+  },
+
   methods: {
+    beforeunloadHandler(e){
+            this.$emit('sendForm')
+    },
     // 检查表单
     checkForm() {
       let all = [];
@@ -94,8 +104,8 @@ export default {
       });
       this.$emit('sendForm', all);
     },
-    countDowm () {
-      var self = this
+    countDown () {
+      let self = this
       clearInterval(this.promiseTimer)
       this.promiseTimer = setInterval(function () {
         if (self.hour === 0) {
@@ -104,7 +114,7 @@ export default {
             self.minute -= 1
           } else if (self.minute === 0 && self.second === 0) {
             self.second = 0
-            self.$emit('countDowmEnd', true)
+            self.$emit('sendForm')
             clearInterval(self.promiseTimer)
           } else {
             self.second -= 1

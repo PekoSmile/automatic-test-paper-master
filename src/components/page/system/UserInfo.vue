@@ -139,6 +139,7 @@
     import axios from 'axios'
 
     export default {
+      inject: ['reload'],
         data() {
             return {
                 formLabelWidth: '100px',
@@ -181,10 +182,10 @@
 
                           this.$message({message: "修改成功", type: 'success'});
                           this.dialogFormVisible = false;
-                          this.$router.go(0)
+                          this.reload();
                         } else {
                             this.$message({message: "修改出错", type: 'error'});
-                            this.$router.go(0)
+                          this.reload();
                         }
                     });
             },

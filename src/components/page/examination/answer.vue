@@ -13,7 +13,6 @@
             <i class="el-icon-message-solid"></i><span>{{ item.paperDate }}</span> <i
               class="el-icon-timer"></i
           ><span v-if="item.examDate != null">限时{{ item.examDate }}分钟</span>
-            <!--            <i class="iconfont icon-fenshu"></i><span>满分{{item.totalScore}}分</span>-->
           </div>
         </li>
       </ul>
@@ -30,14 +29,13 @@
         />
       </div>
 
-      <el-dialog :visible.sync="dialogVisible" width="80%">
+      <el-dialog :visible.sync="dialogVisible" width="80%" :before-close="handleClose">
         <div class="all">
           <test :allTitle="allTitle" :title="title" @sendForm="sendForm" ref="form"
                 v-if="dialogVisible"></test>
         </div>
         <span slot="footer" class="dialog-footer tc">
                     <div class="tc">
-                        <el-button @click="closeDialog">取 消</el-button>
                         <el-button type="primary" @click="sendForm()">提交试卷</el-button>
                     </div>
                 </span>
@@ -50,6 +48,7 @@
 import test from '../../common/test';
 
 export default {
+  inject: ['reload'],
   data() {
     return {
       key: null, //搜索关键字
@@ -110,11 +109,16 @@ export default {
             console.log(error);
           });
     },
-    handleClose() {
+    handleClose(done) {
+      this.$confirm('关闭页面即提交试卷，确定关闭吗').then(() => {
+        this.sendForm();
+        done();
+        console.info("点击确定触发");
+      }).catch(() => {
+        console.log("点击右上角 'X' ，取消按钮或遮罩层时触发");
+      });
 
     },
-
-
     sendForm(val) {
       if (val) {
         //提交的数据
@@ -139,6 +143,8 @@ export default {
                 function (response) {
                   if (response.data.code == '0000') {
                     this.$message.success('考试结束');
+                    this.reload();
+
                   } else {
                     this.$message.error('提交失败');
                   }

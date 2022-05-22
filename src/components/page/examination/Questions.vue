@@ -1,17 +1,44 @@
 <template>
     <div>
+      <el-dialog  title="批量导入题目"
+                  :visible.sync="addTitleView"
+                  width="30%">
+
+        <el-button style="margin-left:25%"size="mini" type="warning" @click="frontDownload">下载模板</el-button>
+        <el-button style="margin-left:10%" size="mini" type="success" @click="submitUpload">上传文件</el-button>
+
+        <el-upload
+            ref="upload"
+            action="/zj/title/importTitle.htm"
+            :limit="1"
+            :on-preview="handlePreview"
+            :on-remove="handleRemove"
+            :file-list="fileList"
+            :auto-upload="false"
+            :before-upload="beforeUpload"
+            :http-request="GoUpload"
+        >
+          <div>
+            <el-button slot="trigger"size="mini" type="primary">选取文件</el-button>
+            <div slot="tip" class="el-upload__tip">
+              只能上传excel文件，且不超过5MB
+            </div>
+            <div slot="tip" class="el-upload-list__item-name">{{file.fileName}}</div>
+          </div>
+        </el-upload>
+
+      </el-dialog>
+
+
         <el-row :gutter="20">
             <el-col :span="4">
-              <el-input v-model="keywords" placeholder="请输入内容"></el-input>
+              <el-input v-model="keywords" placeholder="模糊查询题目或科目或出题人"></el-input>
             </el-col>
           <el-col :span="3">
             <el-input v-model="titleName" placeholder="题目"></el-input>
           </el-col>
           <el-col :span="3">
             <el-input v-model="subjectName" placeholder="科目"></el-input>
-          </el-col>
-          <el-col :span="3">
-            <el-input v-model="className" placeholder="班级"></el-input>
           </el-col>
           <el-col :span="2">
             <el-input v-model="titleFraction" placeholder="分数"></el-input>
@@ -26,7 +53,7 @@
                 <el-button type="primary" @click="dialogVisible = true">手动导入</el-button>
             </el-col>
           <el-col :span="2" >
-            <el-button type="primary" @click="dialogVisible = true">批量导入</el-button>
+            <el-button type="primary" @click="addTitleView= true">批量导入</el-button>
           </el-col>
 
         </el-row>
@@ -49,11 +76,6 @@
             <el-table-column
                     prop="subjectName"
                     label="科目"
-            >
-            </el-table-column>
-            <el-table-column
-                    prop="className"
-                    label="班级"
             >
             </el-table-column>
             <el-table-column
@@ -141,16 +163,6 @@
                             <el-input v-model="form.titleType"></el-input>
                         </el-form-item>
                     </el-col>
-                </el-form-item>
-                <el-form-item label="考试班级：">
-                    <el-select v-model="form.classId" clearable placeholder="请选择班级">
-                        <el-option
-                                v-for="(item,index) in this.classList"
-                                :label="item.className"
-                                :value="item.classId"
-                                :key="index">
-                        </el-option>
-                    </el-select>
                 </el-form-item>
                 <el-form-item label="题目：">
                     <el-input v-model="form.titleName"></el-input>
@@ -271,13 +283,14 @@
 
 <script>
 
+    import axios from "axios";
+
     export default {
         inject:['reload'],
         data() {
             return {
               titleName:'',
               subjectName:'',
-              className:'',
               titleType:'',
               titleFraction:'',
               classList:[],
@@ -341,7 +354,10 @@
                         { required: true, message: '不能为空', trigger: 'blur' }
                     ],
 
-                }
+                },
+              addTitleView:false,
+              file: {},
+              fileList: [],
             }
 
 
@@ -356,6 +372,62 @@
             }
         },
         methods: {
+          handleRemove(file, fileList) {
+            console.log(file, fileList);
+          },
+          handlePreview(file) {
+            console.log(file);
+          },
+          frontDownload() {
+            let a = document.createElement("a"); //创建一个<a></a>标签
+            a.href = "./title.xlsx"; // 给a标签的href属性值加上地址，
+            a.download = "题目模板.xlsx"; //设置下载文件文件名，这里加上.xlsx指定文件类型，pdf文件就指定.pdf即可
+            a.style.display = "none"; // 障眼法藏起来a标签
+            document.body.appendChild(a); // 将a标签追加到文档对象中
+            a.click(); // 模拟点击了a标签，会触发a标签的href的读取，浏览器就会自动下载了
+            a.remove(); // 一次性的，用完就删除a标签
+          },
+
+          beforeUpload(file) {
+            console.log(file, "文件");
+            const extension = file.name.split(".")[1] === "xls";
+            const extension2 = file.name.split(".")[1] === "xlsx";
+            const isLt5M = file.size / 1024 / 1024 < 5;
+            if (!extension && !extension2) {
+              this.$message.warning("上传模板只能是 xls、xlsx格式!");
+              return false;
+            }
+            if (!isLt5M) {
+              this.$message.warning("上传模板大小不能超过 5MB!");
+              return false;
+            }
+            this.file = file;
+          },
+
+          submitUpload() {
+            this.$refs.upload.submit();
+          },
+          GoUpload(content){
+            let fdata  = new FormData();
+            fdata.append('file',content.file)
+            let config = {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              },
+              transformRequest: [function (data) {
+                return data
+              }]
+            }
+            axios.post(content.action,fdata,config).then(
+                response => {
+                  if (response.data.code == "0000") {
+                    this.$message({message: "导入成功", type: 'success'});
+                    this.reload();
+                  } else {
+                    this.$message({message: "导入失败", type: 'error'});
+                  }
+                });
+          },
             //table表格格式化
             sfktFormate(row,index){
                 if (row.titleStatus == 1) {
@@ -401,7 +473,6 @@
             },
             insertQuestions(){
                 let params = {
-                    classId:this.form.classId,
                     subjectId: this.form.subjectId,
                     titleName: this.form.titleName,
                     titleType: this.form.titleType,
@@ -516,7 +587,6 @@
                 let params = {
                   titleName:this.titleName,
                   subjectName:this.subjectName,
-                  className:this.className,
                   titleType:this.titleType,
                   titleFraction:this.titleFraction,
                     currentNum: this.currentNum,
@@ -531,10 +601,13 @@
                             this.total = response.data.result.count;
                             this.tableDataShow = true;
                         }.bind(this)
+
                     )
                     .catch(function (error) {
                         console.log(error);
                     });
+
+
             },
             queryClassList(){
                 this.axios

@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c85ad5b0-7c94-436a-ae4d-c7eb9aeb07e1" name="变更" comment="5.20 &#10;18:00">
+    <list default="true" id="c85ad5b0-7c94-436a-ae4d-c7eb9aeb07e1" name="变更" comment="已完成目标功能，5.23 2:18">
+      <change afterPath="$PROJECT_DIR$/public/title.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/page/examination/train.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/common/test.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/test.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/examination/answer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/examination/answer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page/examination/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/examination/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page/examination/Questions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/examination/Questions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page/examination/achievement.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/examination/achievement.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/page/examination/examinationRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/examination/examinationRecord.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/page/system/UserInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/system/UserInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -36,18 +51,22 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2021.3.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="K:\exam_system\EMOFF_Test\automatic-test-paper-master\public" />
       <recent name="K:\exam_system\EMOFF_Test\automatic-test-paper-master\src\assets\img" />
       <recent name="K:\exam_system\EMOFF_Test\automatic-test-paper-master\src\assets\css" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="K:\exam_system\EMOFF_Test\automatic-test-paper-master\public" />
+      <recent name="K:\exam_system\EMOFF_Test\automatic-test-paper-master\src\assets" />
+      <recent name="K:\exam_system\EMOFF_Test\automatic-test-paper-master\src\assets\file" />
     </key>
   </component>
   <component name="RunManager">
@@ -71,7 +90,8 @@
       <option name="presentableId" value="Default" />
       <updated>1652887224614</updated>
       <workItem from="1652887230370" duration="42342000" />
-      <workItem from="1653019610752" duration="31157000" />
+      <workItem from="1653019610752" duration="51294000" />
+      <workItem from="1653158252446" duration="41787000" />
     </task>
     <task id="LOCAL-00001" summary="5.20 &#10;17:19">
       <created>1653038385144</created>
@@ -94,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653043257108</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="考试模块改善：&#10;重考功能雏形，考试页面限制">
+      <created>1653079960698</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1653079960698</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,6 +141,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="5.20 &#10;17:19" />
     <MESSAGE value="5.20 &#10;18:00" />
-    <option name="LAST_COMMIT_MESSAGE" value="5.20 &#10;18:00" />
+    <MESSAGE value="考试模块改善：&#10;重考功能雏形，考试页面限制" />
+    <MESSAGE value="删除题目数据表classId字段，修复考试管理功能" />
+    <MESSAGE value="已完成目标功能，5.23 2:18" />
+    <option name="LAST_COMMIT_MESSAGE" value="已完成目标功能，5.23 2:18" />
   </component>
 </project>

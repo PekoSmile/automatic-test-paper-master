@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="margin:0% 20% 0% 20%">
+    <div style="margin:0 20% 0 20%">
       <p style="text-align:center; color: #ff0000">注意: 离开页面即交卷,请谨慎操作！</p>
     </div>
     <div class="title-paperName">
@@ -64,6 +64,7 @@
 <script>
 export default {
   props: ['allTitle', 'title'],
+  inject: ['reload'],
   data() {
     return {
       examShow: true,
@@ -78,6 +79,8 @@ export default {
   },
   mounted() {
     window.addEventListener('beforeunload', e => this.beforeunloadHandler(e))
+    document.addEventListener('visibilitychange', e=> this.visibilitychangeHandler(e))
+    window.addEventListener('popstate', e => this.popstateHandler(e))
     if (this.times > 0) {
       this.hour = Math.floor(( this.times /60) % 24)
       this.minute = Math.floor((this.times) % 60)
@@ -87,11 +90,27 @@ export default {
   },
   destroyed () {
     window.removeEventListener('beforeunload', e => this.beforeunloadHandler(e))
+    document.removeEventListener('visibilitychange', e=> this.visibilitychangeHandler(e))
+    window.removeEventListener('popstate', e => this.popstateHandler(e))
+
   },
 
   methods: {
     beforeunloadHandler(e){
             this.$emit('sendForm')
+    },
+    visibilitychangeHandler(e){
+      if(e.target.visibilityState ==='hidden')
+        window.alert('警告！，你已离开页面，已交卷')
+        this.$emit('sendForm')
+        setTimeout(()=>{
+          this.$router.go(0)
+            },2000)
+    },
+    popstateHandler(e){
+      window.alert('警告！，你已离开页面，已交卷')
+      this.$emit('sendForm')
+      this.$router.go(0)
     },
     // 检查表单
     checkForm() {
@@ -151,7 +170,7 @@ export default {
   watch: {
     allTitle: {
       handler: function (val, oldval) {
-        if (val != oldval) {
+        if (val !== oldval) {
           this.$nextTick(() => {
             this.dataList = [];
             this.dataList = this.allTitle;

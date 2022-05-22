@@ -21,9 +21,9 @@
                 <div class="login-btn">
                     <el-button type="primary" plain @click="submitForm()">登录</el-button>
                 </div>
-                <div class="login-btn">
-                    <el-button type="primary" plain @click="dialogFormVisible = true">注册</el-button>
-                </div>
+<!--                <div class="login-btn">-->
+<!--                    <el-button type="primary" plain @click="dialogFormVisible = true">注册</el-button>-->
+<!--                </div>-->
             </el-form>
         </div>
 
@@ -34,7 +34,7 @@
                               style="width: 200px"></el-input>
                 </el-form-item>
                 <el-form-item label="登录账号：" label-width="100px" prop="userId">
-                    <el-input v-model="form.userId" :label-width="formLabelWidth" placeholder="学号或者教师号"
+                    <el-input v-model="form.userId" :label-width="formLabelWidth" placeholder="学号或者工号"
                               style="width: 200px"></el-input>
                 </el-form-item>
                 <el-form-item label="登录密码：" label-width="100px" prop="password">
@@ -49,7 +49,7 @@
                     <el-select v-model="form.typeId" placeholder="请选择角色" :label-width="formLabelWidth"
                                style="width: 200px" @change="selectType">
                         <el-option label="学生" :value=0></el-option>
-                        <el-option label="老师" :value=1></el-option>
+                        <el-option label="判断" :value=1></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="班级：" label-width="100px" prop="classId" v-show="this.status===0">

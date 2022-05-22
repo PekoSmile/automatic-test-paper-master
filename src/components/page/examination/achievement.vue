@@ -6,7 +6,7 @@
           <el-button @click="queryAchievement">成绩单导出</el-button>
         </el-col>
         <el-col :span="4">
-          <el-input v-model="keyWords" placeholder="请输入内容"></el-input>
+          <el-input v-model="keyWords" placeholder="模糊查询"></el-input>
         </el-col>
         <el-col :span="3">
           <el-input v-model="paperName" placeholder="试卷名称"></el-input>

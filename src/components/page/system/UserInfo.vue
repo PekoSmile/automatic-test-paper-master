@@ -9,6 +9,37 @@
                   <el-button type="primary" class="glocal_button"
                              @click="queryUserInfoByBaseQuery">查询
                   </el-button>
+                  <el-button type="primary" class="glocal_button"
+                             @click="addUserView=true">导入用户
+                  </el-button>
+                  <el-dialog  title="批量导入用户"
+                              :visible.sync="addUserView"
+                              width="30%">
+
+                      <el-button style="margin-left:25%"size="mini" type="warning" @click="frontDownload">下载模板</el-button>
+                      <el-button style="margin-left:10%" size="mini" type="success" @click="submitUpload">上传文件</el-button>
+
+                    <el-upload
+                        ref="upload"
+                        action="/zj/login/importUser.htm"
+                        :limit="1"
+                        :on-preview="handlePreview"
+                        :on-remove="handleRemove"
+                        :file-list="fileList"
+                        :auto-upload="false"
+                        :before-upload="beforeUpload"
+                        :http-request="GoUpload"
+                    >
+                      <div>
+                        <el-button slot="trigger"size="mini" type="primary">选取文件</el-button>
+                        <div slot="tip" class="el-upload__tip">
+                          只能上传excel文件，且不超过5MB
+                        </div>
+                        <div slot="tip" class="el-upload-list__item-name">{{file.fileName}}</div>
+                      </div>
+                    </el-upload>
+
+                  </el-dialog>
                 </div>
                 <div>
 
@@ -45,7 +76,7 @@
                         prop="typeId"
                         label="所属角色"
                 >
-                    <template slot-scope="scope">{{ scope.row.typeId === 0 ? '学生' : '老师' }}</template>
+                    <template slot-scope="scope">{{ scope.row.typeId === 0 ? '学生' :'管理员'}}</template>
                 </el-table-column>
                 <el-table-column
                         prop="password"
@@ -89,7 +120,7 @@
                               style="width: 200px"></el-input>
                 </el-form-item>
                 <el-form-item label="登录账号：" label-width="100px" >
-                    <el-input v-model="form.userId" :label-width="formLabelWidth" :disabled="true" placeholder="学号或者教师号"
+                    <el-input v-model="form.userId" :label-width="formLabelWidth" :disabled="true" placeholder="学号或工号"
                               style="width: 200px"></el-input>
                 </el-form-item>
                 <el-form-item label="登录密码：" label-width="100px">
@@ -142,6 +173,9 @@
       inject: ['reload'],
         data() {
             return {
+              addUserView:false,
+              file: {},
+              fileList: [],
                 formLabelWidth: '100px',
                 dialogFormVisible: false,
                 search: '',
@@ -166,6 +200,65 @@
             }
         },
         methods: {
+
+          handleRemove(file, fileList) {
+            console.log(file, fileList);
+          },
+          handlePreview(file) {
+            console.log(file);
+          },
+          frontDownload() {
+            let a = document.createElement("a"); //创建一个<a></a>标签
+            a.href = "./user.xlsx"; // 给a标签的href属性值加上地址，
+            a.download = "用户模板.xlsx"; //设置下载文件文件名，这里加上.xlsx指定文件类型，pdf文件就指定.pdf即可
+            a.style.display = "none"; // 障眼法藏起来a标签
+            document.body.appendChild(a); // 将a标签追加到文档对象中
+            a.click(); // 模拟点击了a标签，会触发a标签的href的读取，浏览器就会自动下载了
+            a.remove(); // 一次性的，用完就删除a标签
+          },
+
+          beforeUpload(file) {
+            console.log(file, "文件");
+            const extension = file.name.split(".")[1] === "xls";
+            const extension2 = file.name.split(".")[1] === "xlsx";
+            const isLt5M = file.size / 1024 / 1024 < 5;
+            if (!extension && !extension2) {
+              this.$message.warning("上传模板只能是 xls、xlsx格式!");
+              return false;
+            }
+            if (!isLt5M) {
+              this.$message.warning("上传模板大小不能超过 5MB!");
+              return false;
+            }
+            this.file = file;
+          },
+
+          submitUpload() {
+            this.$refs.upload.submit();
+          },
+          GoUpload(content){
+            let fdata  = new FormData();
+            fdata.append('file',content.file)
+            let config = {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              },
+              transformRequest: [function (data) {
+                return data
+              }]
+            }
+            axios.post(content.action,fdata,config).then(
+                response => {
+                  if (response.data.code == "0000") {
+                    this.$message({message: "导入成功", type: 'success'});
+                    this.reload();
+                  } else {
+                    this.$message({message: "导入失败", type: 'error'});
+                  }
+                });
+          },
+
+
             updateForm(form) {
                 console.log(form)
                 let params = {
@@ -241,10 +334,10 @@
             },
             queryClassList(){
                   this.axios
-                      .post('/zj/login/queryClassInfo.htm')
+                      .post('/zj/class/queryList.htm')
                       .then(
                           function (response){
-                            this.classData = response.data.result.list;
+                            this.classData = response.data.result;
                           }.bind(this)
                       )
                        .catch(function (error){

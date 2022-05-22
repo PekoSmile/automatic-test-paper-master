@@ -24,6 +24,11 @@
       >
       </el-table-column>
       <el-table-column
+          prop="userId"
+          label="学号"
+      >
+      </el-table-column>
+      <el-table-column
           prop="userName"
           label="学生姓名"
       >
@@ -159,7 +164,7 @@ export default {
         menuName: this.menuName,
       };
       this.axios
-          .post('/zj/title/queryPaperByUserId.htm', params)
+          .post('/zj/title/queryPaperByUserEnd.htm', params)
           .then(
               function (response) {
                 this.tableData = response.data.result.list;
@@ -175,7 +180,8 @@ export default {
 
     queryPaper(row) {
       let params = {
-        paperId: row.row.paperId
+        paperId: row.row.paperId,
+        userId:row.row.userId
       };
       this.axios
           .post('/zj/title/queryPaperCompleted.htm', params)

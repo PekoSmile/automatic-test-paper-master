@@ -64,7 +64,11 @@ export default new Router({
 					component: () => import(/* webpackChunkName: "dashboard" */ '../components/page/examination/Questions.vue'),
 					meta: { title: '试题管理' }
 				},
-
+				{
+					path: '/train',
+					component: () => import(/* webpackChunkName: "dashboard" */ '../components/page/examination/train.vue'),
+					meta: { title: '试题练习' }
+				},
 				{
 					path: '/MenuInfo',
 					component: () => import(/* webpackChunkName: "dashboard" */ '../components/page/system/MenuInfo.vue'),

@@ -28,7 +28,7 @@
         <el-table-column prop="paperDate" label="考试日期" width="150"></el-table-column>
         <el-table-column prop="examDate" label="考试时间" width="135"></el-table-column>
         <el-table-column prop="paperScore" label="题目总分" width="100"></el-table-column>
-        <el-table-column prop="teachName" label="组卷教师" width="100"></el-table-column>
+        <el-table-column prop="teachName" label="组卷人" width="100"></el-table-column>
         <el-table-column prop="createTime" label="日期" width="150"></el-table-column>
         <el-table-column label="操作" width="300">
           <template slot-scope="scope">
@@ -54,7 +54,7 @@
     <div class="formClass" v-show="formShow" >
       <el-form ref="form" :model="form" label-width="100px">
         <el-form-item label="试卷名称：">
-          <el-input v-model="form.titleName" style="width: 20%"></el-input>
+          <el-input v-model="form.titleName" style="width: 15%"></el-input>
         </el-form-item>
         <el-form-item label="试卷科目：">
           <el-select v-model="form.subjectId" clearable placeholder="请选择科目">
@@ -71,7 +71,7 @@
           </el-select>
         </el-form-item>
 
-        <el-form-item label="难度系数：">
+        <el-form-item label="期望难度：">
           <el-col :span="2">
             <el-input v-model="form.titleType"></el-input>
           </el-col>
@@ -83,7 +83,7 @@
           </el-col>
         </el-form-item>
         <el-form-item label="考试时间">
-          <el-input v-model="form.examDate" style="width: 10%" value-format="HH-mm-ss"></el-input>
+          <el-input v-model="form.examDate" style="width: 5%" value-format="HH-mm-ss"></el-input>
           分钟
         </el-form-item>
         <el-form-item>
@@ -134,8 +134,6 @@ export default {
   inject: ['reload'],
   data() {
     return {
-      tabledata:[],
-
       tableData: [],
       currentNum: 1,
       pageSize: 10,

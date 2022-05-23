@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5df9e556-767c-4b76-8398-969bd4e31bde" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/automatic-test-paper-master.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/qte-exam-vue-master.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Sidebar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/test.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/test.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/examination/AutoPaper.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/examination/AutoPaper.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/examination/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/examination/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/examination/Questions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/examination/Questions.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/examination/Subject.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/examination/Subject.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/examination/achievement.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/examination/achievement.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/examination/answer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/examination/answer.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/examination/classInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/examination/classInfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/examination/examinationRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/examination/examinationRecord.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/examination/subsection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/examination/subsection.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/examination/train.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/examination/train.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/system/MenuInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/system/MenuInfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/system/RoleInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/system/RoleInfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/system/UpdatePassWord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/system/UpdatePassWord.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/page/system/UserInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/page/system/UserInfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue.config.js" afterDir="false" />
-    </list>
+    <list default="true" id="5df9e556-767c-4b76-8398-969bd4e31bde" name="变更" comment="完善初版系统√" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,6 +9,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="29Ygapq3cBhm04ZoHP1QbOvAPFC" />
   <component name="ProjectViewState">
@@ -67,11 +46,34 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1653295504138</updated>
-      <workItem from="1653295505523" duration="71000" />
+      <workItem from="1653295505523" duration="568000" />
     </task>
+    <task id="LOCAL-00001" summary="完善初版系统√">
+      <created>1653295788049</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1653295788049</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="完善初版系统√" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善初版系统√" />
   </component>
 </project>

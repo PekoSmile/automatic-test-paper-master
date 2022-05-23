@@ -29,7 +29,8 @@
               </el-checkbox-group>
             </div>
             <div class="item-box" v-if="item.titleStatus === 2">
-              <el-input type="textarea" :rows="6" placeholder="请输入内容"></el-input>
+              <el-checkbox  v-if="item.choice1":label="item.choice1"></el-checkbox>
+              <el-checkbox  v-if="item.choice2":label="item.choice2"></el-checkbox>
               <el-collapse v-model="activeNames" @change="handleChange" >
                 <el-collapse-item title="点击查看答案：" >
                   <el-tag type="danger">{{item.titleAnswer}}</el-tag>
@@ -74,6 +75,7 @@ export default {
      tableDataShow: true,
      currentNum: 1,
      pageSize: 10,
+     val:'',
 
    }
   },

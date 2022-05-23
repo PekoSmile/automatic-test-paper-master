@@ -78,11 +78,7 @@
                 >
                     <template slot-scope="scope">{{ scope.row.typeId === 0 ? '学生' :'管理员'}}</template>
                 </el-table-column>
-                <el-table-column
-                        prop="password"
-                        label="用户密码"
-                >
-                </el-table-column>
+
                 <el-table-column
                         prop="isDelete"
                         label="是否删除"
@@ -124,9 +120,11 @@
                               style="width: 200px"></el-input>
                 </el-form-item>
                 <el-form-item label="登录密码：" label-width="100px">
-                    <el-input type="password" v-model="form.password" :label-width="formLabelWidth"
-                              placeholder="密码"
-                              style="width: 200px"></el-input>
+                    <el-input v-model="form.password" :label-width="formLabelWidth"
+                              placeholder="输入修改，空则不改"
+                              style="width: 200px"
+                              clearable
+                    ></el-input>
                 </el-form-item>
                 <el-form-item label="班级：" label-width="100px">
                   <el-select v-model="form.classId"
@@ -187,6 +185,7 @@
                 total: 0,
                 endDate: '',
                 tableDataShow: false,
+                oldPassword:'',
                 form: {
                     userName: '',
                     userId: '',
@@ -260,6 +259,9 @@
 
 
             updateForm(form) {
+                    if(this.oldPassword === form.password){
+                        form.password=''
+                    }
                 console.log(form)
                 let params = {
                     userId: form.userId,
@@ -285,6 +287,7 @@
             handleClick(row) {
                 console.log(row);
                 this.form = row;
+                this.oldPassword = row.password;
                 this.dialogFormVisible = true;
             },
             //清除当前表单里面数据

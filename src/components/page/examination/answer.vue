@@ -187,6 +187,7 @@ export default {
                     this.allTitle.push({
                       list: this.changeArray(response.data.result.oneList1, 1, 'type'),
                       fraction: response.data.result.fractionSum,
+                      titleType:'单选题'
 
                     });
                     this.title.examDate = response.data.result.examDate,
@@ -194,11 +195,13 @@ export default {
                         this.title.userName = response.data.result.userName,
                         this.allTitle.push({
                           list: this.changeArray(response.data.result.oneList2, 2, 'type'),
-                          fraction: response.data.result.fractionSum1
+                          fraction: response.data.result.fractionSum1,
+                          titleType:'填空题'
                         });
                     this.allTitle.push({
                       list: this.changeArray(response.data.result.oneList3, 3, 'type'),
-                      fraction: response.data.result.fractionSum2
+                      fraction: response.data.result.fractionSum2,
+                      titleType:'判断题'
                     });
                     console.log(this.allTitle);
                     this.dialogVisible = !this.dialogVisible;

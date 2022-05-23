@@ -36,7 +36,7 @@
         <!-- 单选 1    填空2    判断3 -->
         <div>
           <div class="type-title">
-            <el-tag>{{item.list}}</el-tag>共{{ item.list.length }}题，共{{ item.fraction }}分
+            {{item.titleType}}、共{{ item.list.length }}题，共{{ item.fraction }}分
           </div>
           <div class="item-title" v-for="(item2, index2) of item.list" :key="index2">
             <div class="title">{{ index2 + 1 }}.{{ item2.titleName }}。{{ item2.titleFraction }}分</div>

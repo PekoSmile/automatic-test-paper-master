@@ -9,7 +9,7 @@
 
         <el-upload
             ref="upload"
-            action="/zj/title/importTitle.htm"
+            action="/qte/title/importTitle.htm"
             :limit="1"
             :on-preview="handlePreview"
             :on-remove="handleRemove"
@@ -262,8 +262,8 @@
                     <el-form-item label="选项C：" prop="choice3">
                         <el-input v-model="title.choice3"></el-input>
                     </el-form-item>
-                    <el-form-item label="选项D：" prop="choice1">
-                        <el-input v-model="title.choice1"></el-input>
+                    <el-form-item label="选项D：" prop="choice4">
+                        <el-input v-model="title.choice4"></el-input>
                     </el-form-item>
                 </el-row>
 
@@ -455,7 +455,7 @@
 
                 };
                 this.axios
-                    .post('/zj/title/updateTitle.htm',params)
+                    .post('/qte/title/updateTitle.htm',params)
                     .then(
                         function (response) {
                             if (response.data.code == "0000"){
@@ -486,7 +486,7 @@
 
                 };
                 this.axios
-                    .post('/zj/title/insertByTitle.htm',params)
+                    .post('/qte/title/insertByTitle.htm',params)
                     .then(
                         function (response) {
                             if (response.data.code == "0000"){
@@ -505,7 +505,7 @@
             },
             querySubjectList(){
                 this.axios
-                    .post('/zj/sub/queryListBySub.htm')
+                    .post('/qte/sub/queryListBySub.htm')
                     .then(
                         function (response) {
                             this.subjectList = response.data.result;
@@ -537,7 +537,7 @@
                    titleId: row
                 };
                 this.axios
-                    .post('/zj/title/queryTitleInfo.htm', params)
+                    .post('/qte/title/queryTitleInfo.htm', params)
                     .then(
                         function (response) {
                             this.title = response.data.result;
@@ -556,7 +556,7 @@
                     titleId: row
                 };
                 this.axios
-                    .post('/zj/title/deleteTileInfo.htm', params)
+                    .post('/qte/title/deleteTileInfo.htm', params)
                     .then(
                         function (response) {
                             if (response.data.code == "0000"){
@@ -594,7 +594,7 @@
                   keyWords:this.keywords,
                 };
                 this.axios
-                    .post('/zj/title/queryTitlePage.htm', params)
+                    .post('/qte/title/queryTitlePage.htm', params)
                     .then(
                         function (response) {
                             this.tableData = response.data.result.list;
@@ -611,7 +611,7 @@
             },
             queryClassList(){
                 this.axios
-                    .post('/zj/class/queryList.htm')
+                    .post('/qte/class/queryList.htm')
                     .then(
                         function (response) {
                             this.classList = response.data.result;

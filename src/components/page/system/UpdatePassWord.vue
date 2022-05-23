@@ -83,7 +83,7 @@
                           confirmPassword:this.ruleForm.pass,
                           password:this.ruleForm.oldPassword,
                         }
-                        this.axios.post('/zj/login/updatePwd.htm',params)
+                        this.axios.post('/qte/login/updatePwd.htm',params)
                             .then(function (response) {
                                 if(response.data.code=="0000"){
                                    this.$message.success('修改成功,请重新登录');

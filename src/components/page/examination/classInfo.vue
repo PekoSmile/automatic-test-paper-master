@@ -89,7 +89,7 @@
                     id: e.row.classId,
                 };
                 this.axios
-                    .post('/zj/class/delete.htm', params)
+                    .post('/qte/class/delete.htm', params)
                     .then(
                         function (response) {
                             if (response.data.code == "0000") {
@@ -111,7 +111,7 @@
                     className: this.form.className,
                 };
                 this.axios
-                    .post('/zj/class/insert.htm', params)
+                    .post('/qte/class/insert.htm', params)
                     .then(
                         function (response) {
                             if (response.data.code == "0000") {
@@ -154,7 +154,7 @@
                     pageSize: this.pageSize,
                 };
                 this.axios
-                    .post('/zj/class/queryPageByClass.htm', params)
+                    .post('/qte/class/queryPageByClass.htm', params)
                     .then(
                         function (response) {
                             this.tableData = response.data.result.list;

@@ -65,7 +65,7 @@ export default {
       };
       this.opinionData=[];
       this.axios
-          .post('/zj/paper/queryAchievement.htm',param)
+          .post('/qte/paper/queryAchievement.htm',param)
           .then(
               function (response) {
                 response.data.result.filter((item, i) => {
@@ -144,7 +144,7 @@ export default {
   },
   created() {
     this.axios
-        .post('/zj/paper/queryAchievement.htm')
+        .post('/qte/paper/queryAchievement.htm')
         .then(
             function (response) {
               response.data.result.filter((item, i) => {
@@ -159,7 +159,7 @@ export default {
         });
 
     this.axios
-        .post('/zj/paper/queryClassIdList.htm')
+        .post('/qte/paper/queryClassIdList.htm')
         .then(
             function (response) {
               response.data.result.filter((item, i) => {
@@ -173,7 +173,7 @@ export default {
         });
 
     this.axios
-        .post('/zj/paper/queryPaperIdList.htm')
+        .post('/qte/paper/queryPaperIdList.htm')
         .then(
             function (response) {
               response.data.result.filter((item, i) => {

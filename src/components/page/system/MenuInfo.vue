@@ -159,7 +159,7 @@
                     menuName: this.menuName,
                 };
                 this.axios
-                    .post('/zj/menu/queryPage.htm', params)
+                    .post('/qte/menu/queryPage.htm', params)
                     .then(
                         function (response) {
                             this.tableData = response.data.result.list;
@@ -180,7 +180,7 @@
                     parentId: this.form.parentId,
                 };
                 this.axios
-                    .post('/zj/menu/insertMenuInfo.htm', params)
+                    .post('/qte/menu/insertMenuInfo.htm', params)
                     .then(
                         function (response) {
                             if (response.data.code == "0000"){

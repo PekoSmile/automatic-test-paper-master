@@ -75,7 +75,7 @@ export default {
         },
         querySubjectList() {
             this.axios
-                .post('/zj/sub/queryListBySub.htm')
+                .post('/qte/sub/queryListBySub.htm')
                 .then(
                     function (response) {
                         this.subjectList = response.data.result;

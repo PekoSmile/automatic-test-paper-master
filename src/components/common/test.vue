@@ -35,24 +35,29 @@
       <el-card class="card-box" v-for="item of dataList" :key="item.id" v-show="examShow">
         <!-- 单选 1    填空2    判断3 -->
         <div>
-          <div class="type-title">{{ item.title }}共{{ item.list.length }}题，共{{ item.fraction }}分</div>
+          <div class="type-title">
+            <el-tag>{{item.list}}</el-tag>共{{ item.list.length }}题，共{{ item.fraction }}分
+          </div>
           <div class="item-title" v-for="(item2, index2) of item.list" :key="index2">
             <div class="title">{{ index2 + 1 }}.{{ item2.titleName }}。{{ item2.titleFraction }}分</div>
-            <div class="content-box1" v-if="item.type === 3">
-              <el-input type="textarea" :rows="6" placeholder="请输入内容" v-model="item2.val"></el-input>
-            </div>
             <div class="item-box" v-if="item2.type === 1">
               <el-radio-group v-model="item2.val">
-                <el-radio :label="item2.choice1"></el-radio>
-                <el-radio :label="item2.choice2"></el-radio>
-                <el-radio :label="item2.choice3"></el-radio>
-                <el-radio :label="item2.choice4"></el-radio>
+                <el-radio v-if="item2.choice1":label="item2.choice1"></el-radio>
+                <el-radio v-if="item2.choice2":label="item2.choice2"></el-radio>
+                <el-radio v-if="item2.choice3":label="item2.choice3"></el-radio>
+                <el-radio v-if="item2.choice4":label="item2.choice4"></el-radio>
               </el-radio-group>
             </div>
             <div class="item-box" v-if="item2.type === 2">
               <el-checkbox-group v-model="item2.val">
                 <el-input type="textarea" :rows="6" placeholder="请输入内容" v-model="item2.val"></el-input>
               </el-checkbox-group>
+            </div>
+            <div class="item-box" v-if="item2.type === 3">
+              <el-radio-group v-model="item2.val">
+                <el-radio label="对"></el-radio>
+                <el-radio label="错"></el-radio>
+              </el-radio-group>
             </div>
           </div>
         </div>

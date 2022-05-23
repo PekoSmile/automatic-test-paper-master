@@ -21,7 +21,7 @@
 
                     <el-upload
                         ref="upload"
-                        action="/zj/login/importUser.htm"
+                        action="/qte/login/importUser.htm"
                         :limit="1"
                         :on-preview="handlePreview"
                         :on-remove="handleRemove"
@@ -269,7 +269,7 @@
                     userName: form.userName,
                     isDelete: form.isDelete,
                 }
-                axios.post('/zj/login/updateUserInfo.htm', params)
+                axios.post('/qte/login/updateUserInfo.htm', params)
                     .then(response => {
                         if (response.data.code == "0000") {
 
@@ -319,7 +319,7 @@
                     keyWords: this.search,
                 };
                 this.axios
-                    .post('/zj/login/queryUserInfo.htm', params)
+                    .post('/qte/login/queryUserInfo.htm', params)
                     .then(
                         function (response) {
                             this.tableData = response.data.result.list;
@@ -334,7 +334,7 @@
             },
             queryClassList(){
                   this.axios
-                      .post('/zj/class/queryList.htm')
+                      .post('/qte/class/queryList.htm')
                       .then(
                           function (response){
                             this.classData = response.data.result;

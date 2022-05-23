@@ -13,11 +13,11 @@ module.exports = {
     devServer: {
         port: 7777,
         proxy: {
-            '/zj':{
+            '/qte':{
                 target:target,
                 changeOrigin:true,
                 pathRewrite:{
-                    '/zj':'/zj'
+                    '/qte':'/qte'
                 }
 
             }

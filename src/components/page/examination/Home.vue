@@ -101,21 +101,24 @@
 
             <div class="title">
               {{ index2 + 1 }}.{{ item2.titleName }}。{{ item2.titleFraction }}分</div>
-            <div class="content-box1" v-if="item.type === 3">
-              <el-input type="textarea" :rows="6" placeholder="请输入内容" v-model="item2.answer"></el-input>
-            </div>
             <div class="item-box" v-if="item2.type === 1">
               <el-radio-group v-model="item2.answer">
-                <el-radio :label="item2.choice1"></el-radio>
-                <el-radio :label="item2.choice2"></el-radio>
-                <el-radio :label="item2.choice3"></el-radio>
-                <el-radio :label="item2.choice4"></el-radio>
+                <el-radio v-if="item2.choice1":label="item2.choice1"></el-radio>
+                <el-radio v-if="item2.choice2":label="item2.choice2"></el-radio>
+                <el-radio v-if="item2.choice3":label="item2.choice3"></el-radio>
+                <el-radio v-if="item2.choice4":label="item2.choice4"></el-radio>
               </el-radio-group>
             </div>
             <div class="item-box" v-if="item2.type === 2">
               <el-checkbox-group v-model="item2.answer">
                 <el-input type="textarea" :rows="6" placeholder="请输入内容" v-model="item2.answer"></el-input>
               </el-checkbox-group>
+            </div>
+            <div class="item-box" v-if="item2.type === 3">
+              <el-radio-group v-model="item2.answer">
+                <el-radio label="对"></el-radio>
+                <el-radio label="错"></el-radio>
+              </el-radio-group>
             </div>
           </div>
         </div>
@@ -180,7 +183,7 @@ export default {
         titleString:jsonArr,
       };
       this.axios
-          .post('/zj/title/updateTitleByList.htm', params)
+          .post('/qte/title/updateTitleByList.htm', params)
           .then(
               function (response) {
                 if (response.data.code == '0000') {
@@ -224,7 +227,7 @@ export default {
       };
       Loading.service();
       this.axios
-          .post('/zj/title/autoExam.htm', params)
+          .post('/qte/title/autoExam.htm', params)
           .then(
               function (response) {
                 if (response.data.code == '0000') {
@@ -291,7 +294,7 @@ export default {
         }
       }
       form.method = 'GET'; //请求方式
-      form.action = '/zj/paper/paperExport.htm';
+      form.action = '/qte/paper/paperExport.htm';
       form.submit();
       document.body.removeChild(form);
     },
@@ -301,7 +304,7 @@ export default {
         paperId: row.paperId
       };
       this.axios
-          .post('/zj/paper/deletePaper.htm', params)
+          .post('/qte/paper/deletePaper.htm', params)
           .then(
               function (response) {
                 if (response.data.code == "0000") {
@@ -322,7 +325,7 @@ export default {
         pageSize: this.pageSize
       };
       this.axios
-          .post('/zj/title/queryPaperPage.htm', params)
+          .post('/qte/title/queryPaperPage.htm', params)
           .then(
               function (response) {
                 this.tableData = response.data.result.list;
@@ -340,7 +343,7 @@ export default {
         paperId: row.paperId
       };
       this.axios
-          .post('/zj/title/queryPaper.htm', params)
+          .post('/qte/title/queryPaper.htm', params)
           .then(
               function (response) {
                 if (response.data.code == '0000') {
@@ -355,7 +358,7 @@ export default {
                     list: this.changeArray(response.data.result.oneList2, 2, 'type'),
                   });
                   this.dataList.push({
-                    list: this.changeArray(response.data.result.oneList3, 2, 'type'),
+                    list: this.changeArray(response.data.result.oneList3, 3, 'type'),
                   });
                   console.log(this.dataList);
 
@@ -378,7 +381,7 @@ export default {
     },
     querySubjectList() {
       this.axios
-          .post('/zj/sub/queryListBySub.htm')
+          .post('/qte/sub/queryListBySub.htm')
           .then(
               function (response) {
                 this.subjectList = response.data.result;
@@ -390,7 +393,7 @@ export default {
     },
     queryClassList() {
       this.axios
-          .post('/zj/class/queryList.htm')
+          .post('/qte/class/queryList.htm')
           .then(
               function (response) {
                 this.classList = response.data.result;
@@ -437,16 +440,7 @@ export default {
   }
 
   .item-box {
-    /*  display: flex;*/
-    /*width: 100%;*/
-    /*align-items: center;*/
-    /* height: 40px;*/
-    /* .label {*/
-    /*  width: 20px;*/
-    /* }*/
-    /*  .value {*/
-    /*  flex: 1;*/
-    /*  }*/
+    margin-bottom: 30px;
   }
 
   .content-box1 {

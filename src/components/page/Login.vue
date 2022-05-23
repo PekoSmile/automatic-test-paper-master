@@ -135,7 +135,7 @@
                             this.$message({message: "密码不一致", type: 'error'});
                             return;
                         }
-                        axios.post('/zj/login/registerLogin.htm', params)
+                        axios.post('/qte/login/registerLogin.htm', params)
                             .then(response => {
                                 if (response.data.code == "0000") {
                                     this.$message({message: "注册成功", type: 'success'});
@@ -160,12 +160,12 @@
                             userId: this.param.userId,
                             password: this.param.password
                         }
-                        axios.post('/zj/login/login.htm', params)
+                        axios.post('/qte/login/login.htm', params)
                             .then(response => {
                                 if (response.data.code == "0000") {
                                     //生成uuid作为token
                                     const uuidv5 = require('uuid/v5');
-                                    const token = uuidv5('zj', uuidv5.DNS);
+                                    const token = uuidv5('qte', uuidv5.DNS);
                                     // 登陆成功 假设这里是后台返回的 token
                                     localStorage.setItem('token', response.data.result.token)
                                     sessionStorage.setItem('token', response.data.result.token)
@@ -195,7 +195,7 @@
         },
         created() {
             this.axios
-                .post('/zj/class/queryList.htm')
+                .post('/qte/class/queryList.htm')
                 .then(
                     function (response) {
                         this.classList = response.data.result;

@@ -98,7 +98,7 @@ export default {
         pageSize: this.pageSize
       };
       this.axios
-          .post('/zj/paper/queryPaperPage.htm', params)
+          .post('/qte/paper/queryPaperPage.htm', params)
           .then(
               function (response) {
                 this.pagination = response.data.result.list;
@@ -138,7 +138,7 @@ export default {
           classId: this.classId
         };
         this.axios
-            .post('/zj/paper/successPaper.htm', params)
+            .post('/qte/paper/successPaper.htm', params)
             .then(
                 function (response) {
                   if (response.data.code == '0000') {
@@ -179,7 +179,7 @@ export default {
         this.allTitle=[];
 
         this.axios
-            .post('/zj/paper/addPaperByStudent.htm', params)
+            .post('/qte/paper/addPaperByStudent.htm', params)
             .then(
                 function (response) {
                   if (response.data.code == '0000') {
@@ -197,7 +197,7 @@ export default {
                           fraction: response.data.result.fractionSum1
                         });
                     this.allTitle.push({
-                      list: this.changeArray(response.data.result.oneList3, 2, 'type'),
+                      list: this.changeArray(response.data.result.oneList3, 3, 'type'),
                       fraction: response.data.result.fractionSum2
                     });
                     console.log(this.allTitle);

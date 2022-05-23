@@ -2,46 +2,39 @@
   <div>
     <el-form>
       <el-card class="card-box" v-for="item of titleData" :key="item.id" v-show="examShow">
-        <!-- 单选 1    填空2    判断3 -->
+        <!-- 单选 0    填空1    判断2 -->
         <div>
           <div class="item-title">
             <div class="title">
               {{ item.titleName }}——{{ item.titleFraction }}分</div>
             <div class="item-box" v-if="item.titleStatus  === 0">
-                <el-checkbox  :label="item.choice1"></el-checkbox>
-                <el-checkbox  :label="item.choice2"></el-checkbox>
-                <el-checkbox  :label="item.choice3"></el-checkbox>
-                <el-checkbox  :label="item.choice4"></el-checkbox>
+                <el-checkbox  v-if="item.choice1":label="item.choice1"></el-checkbox>
+                <el-checkbox  v-if="item.choice2":label="item.choice2"></el-checkbox>
+                <el-checkbox  v-if="item.choice3":label="item.choice3"></el-checkbox>
+                <el-checkbox  v-if="item.choice4":label="item.choice4"></el-checkbox>
               <el-collapse v-model="activeNames" @change="handleChange" >
-              <el-collapse-item title="答案：" >
-                <el-tabs >
-                  <el-tab-pane :label="item.titleAnswer" ></el-tab-pane>
-                </el-tabs>
+              <el-collapse-item title="点击查看答案：" >
+                <el-tag type="danger">{{item.titleAnswer}}</el-tag>
               </el-collapse-item>
               </el-collapse>
             </div>
-            <div class="content-box1" v-if="item.titleStatus === 2">
-              <el-input type="textarea" :rows="6" placeholder="请输入内容"></el-input>
-              <el-collapse v-model="activeNames" @change="handleChange" >
-                <el-collapse-item title="答案：" >
-                  <el-tabs >
-                    <el-tab-pane :label="item.titleAnswer" ></el-tab-pane>
-                  </el-tabs>
-                </el-collapse-item>
-              </el-collapse>
-            </div>
-
             <div class="item-box" v-if="item.titleStatus  === 1">
               <el-checkbox-group v-model="item.titleAnswer">
                 <el-input type="textarea" :rows="6" placeholder="请输入内容"></el-input>
                 <el-collapse v-model="activeNames" @change="handleChange" >
-                  <el-collapse-item title="答案：" >
-                    <el-tabs >
-                      <el-tab-pane :label="item.titleAnswer" ></el-tab-pane>
-                    </el-tabs>
+                  <el-collapse-item title="点击查看答案：" >
+                    <el-tag type="danger">{{item.titleAnswer}}</el-tag>
                   </el-collapse-item>
                 </el-collapse>
               </el-checkbox-group>
+            </div>
+            <div class="item-box" v-if="item.titleStatus === 2">
+              <el-input type="textarea" :rows="6" placeholder="请输入内容"></el-input>
+              <el-collapse v-model="activeNames" @change="handleChange" >
+                <el-collapse-item title="点击查看答案：" >
+                  <el-tag type="danger">{{item.titleAnswer}}</el-tag>
+                </el-collapse-item>
+              </el-collapse>
             </div>
           </div>
         </div>
@@ -110,7 +103,7 @@ export default {
         pageSize: this.pageSize,
       };
       this.axios
-          .post('/zj/title/queryTitlePage.htm', params)
+          .post('/qte/title/queryTitlePage.htm', params)
           .then(
               function (response) {
                 this.titleData = response.data.result.list;

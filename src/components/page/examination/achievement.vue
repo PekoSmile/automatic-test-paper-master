@@ -132,7 +132,7 @@ export default {
         }
       }
       form.method = 'GET'; //请求方式
-      form.action = '/zj/paper/queryExport.htm';
+      form.action = '/qte/paper/queryExport.htm';
       form.submit();
       document.body.removeChild(form);
     },
@@ -157,7 +157,7 @@ export default {
         difficulty:this.difficulty
       };
       this.axios
-          .post('/zj/paper/queryPage.htm', params)
+          .post('/qte/paper/queryPage.htm', params)
           .then(
               function (response) {
                 this.tableData = response.data.result.list;

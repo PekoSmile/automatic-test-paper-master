@@ -70,33 +70,30 @@
 
             <div class="title">
               {{ index2 + 1 }}.{{ item2.titleName }}。{{ item2.titleFraction }}分</div>
-            <div class="content-box1" v-if="item.type === 3">
-              <el-input type="textarea" :rows="6" placeholder="请输入内容" v-model="item2.answer"></el-input>
-              <br >
-              <p style="color:red">
-                学生答案 ： {{item2.studentAnswers}}
-              </p>
-            </div>
             <div class="item-box" v-if="item2.type === 1">
               <el-radio-group v-model="item2.answer">
-                <el-radio :label="item2.choice1"></el-radio>
-                <el-radio :label="item2.choice2"></el-radio>
-                <el-radio :label="item2.choice3"></el-radio>
-                <el-radio :label="item2.choice4"></el-radio>
+                <el-radio v-if="item2.choice1":label="item2.choice1"></el-radio>
+                <el-radio v-if="item2.choice2":label="item2.choice2"></el-radio>
+                <el-radio v-if="item2.choice3":label="item2.choice3"></el-radio>
+                <el-radio v-if="item2.choice4":label="item2.choice4"></el-radio>
               </el-radio-group>
               <br >
-              <p style="color:red">
-                学生答案 ： {{item2.studentAnswers}}
-              </p>
+              <el-tag type="warning">学生答案 ：{{item2.studentAnswers}}</el-tag>
             </div>
             <div class="item-box" v-if="item2.type === 2">
               <el-checkbox-group v-model="item2.answer">
                 <el-input type="textarea" :rows="6" placeholder="请输入内容" v-model="item2.answer"></el-input>
               </el-checkbox-group>
               <br >
-              <p style="color:red">
-                学生答案 ： {{item2.studentAnswers}}
-              </p>
+                 <el-tag type="warning">学生答案 ：{{item2.studentAnswers}}</el-tag>
+            </div>
+            <div class="item-box" v-if="item2.type === 3">
+              <el-radio-group v-model="item2.answer">
+                <el-radio label="对"></el-radio>
+                <el-radio label="错"></el-radio>
+              </el-radio-group>
+              <br >
+              <el-tag type="warning">学生答案 ：{{item2.studentAnswers}}</el-tag>
             </div>
           </div>
         </div>
@@ -164,7 +161,7 @@ export default {
         menuName: this.menuName,
       };
       this.axios
-          .post('/zj/title/queryPaperByUserEnd.htm', params)
+          .post('/qte/title/queryPaperByUserEnd.htm', params)
           .then(
               function (response) {
                 this.tableData = response.data.result.list;
@@ -184,7 +181,7 @@ export default {
         userId:row.row.userId
       };
       this.axios
-          .post('/zj/title/queryPaperCompleted.htm', params)
+          .post('/qte/title/queryPaperCompleted.htm', params)
           .then(
               function (response) {
                 if (response.data.code == '0000') {
@@ -199,7 +196,7 @@ export default {
                     list: this.changeArray(response.data.result.oneList2, 2, 'type'),
                   });
                   this.dataList.push({
-                    list: this.changeArray(response.data.result.oneList3, 2, 'type'),
+                    list: this.changeArray(response.data.result.oneList3, 3, 'type'),
                   });
 
                 } else {

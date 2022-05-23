@@ -94,7 +94,7 @@
                     subjectId: e.row.subjectId,
                 };
                 this.axios
-                    .post('/zj/sub/deleteBySubject.htm', params)
+                    .post('/qte/sub/deleteBySubject.htm', params)
                     .then(
                         function (response) {
                             if (response.data.code == "0000"){
@@ -116,7 +116,7 @@
                     subjectName: this.form.subjectName,
                 };
                 this.axios
-                    .post('/zj/sub/insertBySubject.htm', params)
+                    .post('/qte/sub/insertBySubject.htm', params)
                     .then(
                         function (response) {
                             if (response.data.code == "0000"){
@@ -160,7 +160,7 @@
                     menuName: this.menuName,
                 };
                 this.axios
-                    .post('/zj/sub/queryPageBySubject.htm', params)
+                    .post('/qte/sub/queryPageBySubject.htm', params)
                     .then(
                         function (response) {
                             this.tableData = response.data.result.list;

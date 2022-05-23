@@ -74,7 +74,7 @@ export default {
             roleId:sessionStorage.getItem('role')
 		};
 		this.axios
-				.post('/zj/login/queryMenuList.htm',param)
+				.post('/qte/login/queryMenuList.htm',param)
 				.then(
 						function (response) {
 							this.items=response.data.result

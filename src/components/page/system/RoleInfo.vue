@@ -154,7 +154,7 @@
                     menuIdString: JSON.stringify(checkedKeys)
                 };
                 this.axios
-                    .post('/zj/menu/updateRoleMenuInfo.htm', params)
+                    .post('/qte/menu/updateRoleMenuInfo.htm', params)
                     .then(
                         function (response) {
                             if (response.data.code == "0000") {
@@ -181,7 +181,7 @@
                     keyWords: this.search,
                 };
                 this.axios
-                    .post('/zj/role/rolePage.htm', params)
+                    .post('/qte/role/rolePage.htm', params)
                     .then(
                         function (response) {
                             this.tableData = response.data.result.list;
@@ -199,7 +199,7 @@
                     roleName: this.form.roleName
                 }
                 this.axios
-                    .post('/zj/role/insertRoleInfo.htm', param)
+                    .post('/qte/role/insertRoleInfo.htm', param)
                     .then(
                         function (response) {
                             if (response.data.code == "0000") {
@@ -221,7 +221,7 @@
                     id: sid,
                 }
                 this.axios
-                    .post('/zj/role/deleteRole.htm', param)
+                    .post('/qte/role/deleteRole.htm', param)
                     .then(
                         function (response) {
                             if (response.data.code == "0000") {
@@ -242,7 +242,7 @@
                     roleId: roleId,
                 };
                 this.axios
-                    .post('/zj/menu/queryMenuListByRoleId.htm', params)
+                    .post('/qte/menu/queryMenuListByRoleId.htm', params)
                     .then(
                         function (response) {
                             this.menuShow = true;
@@ -255,7 +255,7 @@
                     });
 
                 this.axios
-                    .post('/zj/menu/queryMenuIdListByRoleId.htm', params)
+                    .post('/qte/menu/queryMenuIdListByRoleId.htm', params)
                     .then(
                         function (response) {
                             this.checkData = response.data.result;

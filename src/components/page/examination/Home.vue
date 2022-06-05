@@ -28,7 +28,7 @@
         <el-table-column prop="paperDate" label="考试日期" width="150"></el-table-column>
         <el-table-column prop="examDate" label="考试时间" width="135"></el-table-column>
         <el-table-column prop="paperScore" label="题目总分" width="100"></el-table-column>
-        <el-table-column prop="teachName" label="组卷人" width="100"></el-table-column>
+        <el-table-column prop="userName" label="组卷人" width="100"></el-table-column>
         <el-table-column prop="createTime" label="日期" width="150"></el-table-column>
         <el-table-column label="操作" width="300">
           <template slot-scope="scope">
